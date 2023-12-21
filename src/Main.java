@@ -25,24 +25,19 @@ public class Main {
 
 
 
-
-
-        var el1 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/radioShc"));
+        var el1 = driver.findElement(AppiumBy.accessibilityId("Show drop-down menu"));
         el1.click();
-        var el2 = driver.findElement(AppiumBy.accessibilityId("Show drop-down menu"));
+        var el2 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_email"));
         el2.click();
         var el3 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_email"));
-        el3.click();
-        var el4 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_email"));
-        el4.click();
-        el4.sendKeys("meghstl");
-        driver.executeScript("mobile: pressKey", Map.ofEntries(Map.entry("keycode", 4)));
-        var el5 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_password"));
+        el3.sendKeys("meghstl");
+        var el4 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_password"));
+        el4.sendKeys("Test@1234");
+        var el5 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btnLogin"));
         el5.click();
-        el5.sendKeys("Test@1234");
-        driver.executeScript("mobile: pressKey", Map.ofEntries(Map.entry("keycode", 4)));
-        var el6 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btnLogin"));
-        el6.click();
+
+        /*
+
         var el7 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_farmerRegistration\"]/android.widget.LinearLayout"));
         el7.click();
         var el8 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[1]"));
@@ -108,6 +103,8 @@ public class Main {
         el36.click();
         var el37 = driver.findElement(AppiumBy.id("android:id/button2"));
         el37.click();
+
+        */
 
 
     }
