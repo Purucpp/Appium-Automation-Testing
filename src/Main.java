@@ -27,10 +27,24 @@ public class Main {
         cap.setCapability("deviceName", "J6AAGF009778SX4");
         cap.setCapability("platformName", "android");
         cap.setCapability("appPackage", "com.kt_goi_shc");
-        cap.setCapability("appActivity", ".ui.login.KtLoginActivity");
+        cap.setCapability("appActivity", ".ui.splash.KtSplashScreen");
         driver = new AppiumDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
 
+        TimeUnit.SECONDS.sleep(5);
+
+        var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
+        eper.click();
+        eper.click();
+        eper.click();
+        eper.click();
+
+        TimeUnit.SECONDS.sleep(5);
+        // skip
+        var elskip = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/skip"));
+        elskip.click();
+
+        TimeUnit.SECONDS.sleep(5);
 
         /// login done
         var el1 = driver.findElement(AppiumBy.accessibilityId("Show drop-down menu"));
