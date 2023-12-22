@@ -32,46 +32,26 @@ public class Main {
         driver = new AppiumDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
 
-        TimeUnit.SECONDS.sleep(5);
-
-        var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
-
-        if(eper.isDisplayed())
-        {
-            eper.click();
-        }
-
-        if(eper.isDisplayed())
-        {
-            eper.click();
-        }
-
-        if(eper.isDisplayed())
-        {
-            eper.click();
-        }
-
-        if(eper.isDisplayed())
-        {
-            eper.click();
-        }
-
+        TimeUnit.SECONDS.sleep(10);
+        splashScreen(driver);
 
         TimeUnit.SECONDS.sleep(5);
-        // skip
-        var elskip = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/skip"));
-        if(elskip.isDisplayed())
-        {
-            elskip.click();
-        }else{
-            TimeUnit.SECONDS.sleep(4);
-            elskip.click();
-        }
+        login(driver);
+
+        TimeUnit.SECONDS.sleep(10);
+        downloadVillage(driver);
+
+        TimeUnit.SECONDS.sleep(10);
+        registerFarmer(driver);
+        TimeUnit.SECONDS.sleep(10);
+        registerPlot(driver);
 
 
-        TimeUnit.SECONDS.sleep(5);
+    }
 
-        /// login done
+
+    public static void login(AppiumDriver driver)
+    {
         var el1 = driver.findElement(AppiumBy.accessibilityId("Show drop-down menu"));
         el1.click();
         var el2 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_email"));
@@ -82,13 +62,12 @@ public class Main {
         el4.sendKeys("Test@1234");
         var el5 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btnLogin"));
         el5.click();
+    }
 
-
-        TimeUnit.SECONDS.sleep(10);
-
-        // register farmer
+    public static void downloadVillage(AppiumDriver driver) throws InterruptedException {
         var el7 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_farmerRegistration\"]/android.widget.LinearLayout"));
         el7.click();
+
         var el8 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[1]"));
         el8.click();
         var el9 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/tv_blockName"));
@@ -100,16 +79,6 @@ public class Main {
         el11.click();
         var el12 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btn_submit"));
         el12.click();
-
-        TimeUnit.SECONDS.sleep(10);
-        registerFarmer(driver);
-
-        TimeUnit.SECONDS.sleep(10);
-        registerPlot(driver);
-
-        // register farmer click
-
-
     }
 
     public static void registerPlot(AppiumDriver driver) throws InterruptedException {
@@ -168,6 +137,42 @@ public class Main {
         TimeUnit.SECONDS.sleep(3);
         var el13 = driver.findElement(AppiumBy.id("android:id/button1"));
         el13.click();
+
+    }
+
+    public static void splashScreen(AppiumDriver driver) throws InterruptedException {
+        var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        TimeUnit.SECONDS.sleep(5);
+        // skip
+        var elskip = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/skip"));
+        if(elskip.isDisplayed())
+        {
+            elskip.click();
+        }else{
+            TimeUnit.SECONDS.sleep(4);
+            elskip.click();
+        }
 
     }
 
