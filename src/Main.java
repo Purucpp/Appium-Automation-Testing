@@ -29,10 +29,124 @@ public class Main {
         cap.setCapability("platformName", "android");
         cap.setCapability("appPackage", "com.kt_goi_shc");
         cap.setCapability("appActivity", ".ui.splash.KtSplashScreen");
+//        cap.setCapability("appActivity", ".ui.home.KtMainActivity");
         driver = new AppiumDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
 
-        TimeUnit.SECONDS.sleep(10);
+        testCaseOne(driver);
+
+        importExport(driver);
+
+
+
+
+    }
+
+    public static void importExport(AppiumDriver driver) throws InterruptedException {
+
+        TimeUnit.SECONDS.sleep(8);
+
+        var el1 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/menuIcon"));
+        el1.click();
+        var el2 = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"Soil Sample Collection\"]"));
+        el2.click();
+        var el3 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/exp_"));
+        el3.click();
+        var el4 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/farmer_delete"));
+        el4.click();
+        var el5 = driver.findElement(AppiumBy.id("android:id/button1"));
+        el5.click();
+        var el6 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/imp_"));
+        el6.click();
+        var el7 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/farmer_edit"));
+        el7.click();
+
+        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        var start = new Point(1018, 1516);
+        var end = new Point (1030, 802);
+        var swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+
+
+//        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        var tapPoint = new Point(432, 1535);
+        var tap = new Sequence(finger, 1);
+        tap.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), tapPoint.x, tapPoint.y));
+        tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        tap.addAction(new Pause(finger, Duration.ofMillis(50)));
+        tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(tap));
+
+        var el8 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_address"));
+        el8.sendKeys("Delhi");
+        var el9 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/submit"));
+        el9.click();
+        var el10 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/menuIcon"));
+        el10.click();
+        var el11 = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"Services\"]"));
+        el11.click();
+
+//        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+         start = new Point(964, 1855);
+         end = new Point (980, 1142);
+         swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+
+        var el12 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/plot_edit"));
+        el12.click();
+
+//        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+         start = new Point(1026, 1624);
+         end = new Point (1018, 795);
+         swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+
+        var el13 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[3]"));
+        el13.click();
+        var el14 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/tv_soilType"));
+        el14.click();
+        var el15 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_areaSize1"));
+        el15.sendKeys("55");
+
+//        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+         start = new Point(1003, 1612);
+         end = new Point (1022, 791);
+         swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+
+        var el16 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btn_collectSoilSample"));
+        el16.click();
+        var el17 = driver.findElement(AppiumBy.id("android:id/button1"));
+        el17.click();
+    }
+
+    public static void testCaseOne(AppiumDriver driver) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(8);
         splashScreen(driver);
 
         TimeUnit.SECONDS.sleep(5);
@@ -45,8 +159,6 @@ public class Main {
         registerFarmer(driver);
         TimeUnit.SECONDS.sleep(10);
         registerPlot(driver);
-
-
     }
 
 
