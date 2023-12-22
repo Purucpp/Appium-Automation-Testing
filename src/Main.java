@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Main {
+
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
@@ -34,15 +35,39 @@ public class Main {
         TimeUnit.SECONDS.sleep(5);
 
         var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
-        eper.click();
-        eper.click();
-        eper.click();
-        eper.click();
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
+        if(eper.isDisplayed())
+        {
+            eper.click();
+        }
+
 
         TimeUnit.SECONDS.sleep(5);
         // skip
         var elskip = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/skip"));
-        elskip.click();
+        if(elskip.isDisplayed())
+        {
+            elskip.click();
+        }else{
+            TimeUnit.SECONDS.sleep(4);
+            elskip.click();
+        }
+
 
         TimeUnit.SECONDS.sleep(5);
 
@@ -77,11 +102,102 @@ public class Main {
         el12.click();
 
         TimeUnit.SECONDS.sleep(10);
+        registerFarmer(driver);
 
+        TimeUnit.SECONDS.sleep(10);
+        registerPlot(driver);
 
         // register farmer click
-        var el13 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_farmerRegistration\"]/android.widget.LinearLayout"));
+
+
+    }
+
+    public static void registerPlot(AppiumDriver driver) throws InterruptedException {
+        var el22 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_sampleCollection\"]/android.widget.LinearLayout"));
+        el22.click();
+        var el33 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/mtv_userName"));
+        el33.sendKeys("8130461500");
+        var el44 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btn_submit"));
+        el44.click();
+        TimeUnit.SECONDS.sleep(2);
+        var el55 = driver.findElement(AppiumBy.xpath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.kt_goi_shc:id/farmersRecyclerView\"]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[3]"));
+        el55.click();
+
+        TimeUnit.SECONDS.sleep(3);
+
+        var el3 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[2]"));
+        el3.click();
+        var el4 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/tv_address1"));
+        el4.click();
+        var el5 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/myCheckbox"));
+        el5.click();
+        var el6 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_surveyNumber1"));
+        el6.sendKeys("445566");
+        var el7 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[3]"));
+        el7.click();
+        var el8 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_mandal"));
+        el8.click();
+
+        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        var start = new Point(999, 1890);
+        var end = new Point (1018, 509);
+        var swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+
+        var el9 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[2]"));
+        el9.click();
+        var el10 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_areaSize1"));
+        el10.click();
+        el10.sendKeys("44");
+        var el11 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/img_upload"));
+        el11.click();
+
+        TimeUnit.SECONDS.sleep(15);
+
+       swipeOne(driver);
+
+        var el12 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btn_collectSoilSample"));
+        el12.click();
+
+        TimeUnit.SECONDS.sleep(3);
+        var el13 = driver.findElement(AppiumBy.id("android:id/button1"));
         el13.click();
+
+    }
+
+    public static void swipeOne(AppiumDriver driver)
+    {
+        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        var start = new Point(1014, 1686);
+        var end = new Point (1026, 1419);
+        var swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), start.getX(), start.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000),
+                PointerInput.Origin.viewport(), end.getX(), end.getY()));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(swipe));
+    }
+
+    public static void registerFarmer(AppiumDriver driver) throws InterruptedException {
+
+        try{
+            var el13 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_farmerRegistration\"]/android.widget.LinearLayout"));
+            el13.click();
+        }catch (Exception e)
+        {
+            TimeUnit.SECONDS.sleep(15);
+
+            var el13 = driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.kt_goi_shc:id/rl_farmerRegistration\"]/android.widget.LinearLayout"));
+            el13.click();
+        }
 
 
 
@@ -109,8 +225,6 @@ public class Main {
         swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Arrays.asList(swipe));
 
-
-
         var el26 = driver.findElement(AppiumBy.accessibilityId("Show drop-down menu"));
         el26.click();
 
@@ -122,11 +236,6 @@ public class Main {
         var el29 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/submit"));
         el29.click();
 
-
-    }
-
-    public void registerFarmer()
-    {
 
     }
 }
