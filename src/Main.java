@@ -35,18 +35,43 @@ public class Main {
 
 //        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-//        testCaseOne(driver);
-
-        importExport(driver);
+        testCaseOne(driver);
+//        importExport(driver);
 
 
 
 
     }
 
+
+    public static void dissmissImport(AppiumDriver driver) throws InterruptedException {
+
+        var el1 = driver.findElement(AppiumBy.id("android:id/button2"));
+        el1.click();
+
+        var el2 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[1]"));
+        el2.click();
+        TimeUnit.SECONDS.sleep(5);
+        var el3 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/tv_blockName"));
+        el3.click();
+        var el4 = driver.findElement(AppiumBy.xpath("(//android.widget.ImageButton[@content-desc=\"Show drop-down menu\"])[2]"));
+        el4.click();
+        var el5 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/btn_submit"));
+        el5.click();
+
+        TimeUnit.SECONDS.sleep(10);
+//        var el6 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/progressBar"));
+//        el6.click();
+
+    }
+
     public static void importExport(AppiumDriver driver) throws InterruptedException {
 
         TimeUnit.SECONDS.sleep(10);
+
+        splashScreen(driver);
+
+        TimeUnit.SECONDS.sleep(2);
 
         var el1 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/menuIcon"));
         el1.click();
@@ -86,16 +111,6 @@ public class Main {
         swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Arrays.asList(swipe));
 
-
-//        final var finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-//        var tapPoint = new Point(432, 1535);
-//        var tap = new Sequence(finger, 1);
-//        tap.addAction(finger.createPointerMove(Duration.ofMillis(0),
-//                PointerInput.Origin.viewport(), tapPoint.x, tapPoint.y));
-//        tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-//        tap.addAction(new Pause(finger, Duration.ofMillis(50)));
-//        tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//        driver.perform(Arrays.asList(tap));
 
         var el8 = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/et_address"));
         el8.sendKeys("Delhi");
@@ -180,7 +195,15 @@ public class Main {
         login(driver);
 
         TimeUnit.SECONDS.sleep(10);
-        downloadVillage(driver);
+
+        try{
+            dissmissImport(driver);
+        }catch (Exception e)
+        {
+            downloadVillage(driver);
+        }
+
+
 
         TimeUnit.SECONDS.sleep(10);
         registerFarmer(driver);
@@ -280,7 +303,7 @@ public class Main {
     }
 
     public static void splashScreen(AppiumDriver driver) throws InterruptedException {
-        var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
+    /*    var eper = driver.findElement(AppiumBy.id("com.android.packageinstaller:id/permission_allow_button"));
 
         if(eper.isDisplayed())
         {
@@ -302,7 +325,7 @@ public class Main {
             eper.click();
         }
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(5); */
         // skip
         var elskip = driver.findElement(AppiumBy.id("com.kt_goi_shc:id/skip"));
         if(elskip.isDisplayed())
